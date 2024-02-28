@@ -1,0 +1,17 @@
+.main-footer {
+
+    height: 80px;
+    background-color: var(--primary-3);
+    border-block-start: 1px solid var(--primary-2);
+    clear: both;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+.main-footer {
+    padding: 20px 0;
+  }
+  
