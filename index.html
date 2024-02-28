@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="onInit()">
+    <header>
+        <h1>Meme Generator</h1>
+    </header>
+    <main>
+        <section class="gallery-container">
+        </section>
+
+        <section class="meme-editor-containter">
+
+            <canvas width="500" height="500"></canvas>
+            <div class="meme-controls"></div>
+        </section>
+
+    </main>
+    <footer>footer</footer>
+    <script src="js/service/utils.js"></script>
+    <script src="js/service/image-editor.service.js"></script>
+    <script src="js/service/image-gallery.service.js"></script>
+    <script src="image-gallery.controller.js"></script>
+    <script src="meme-editor.controller.js"></script>
+</body>
+
+</html>
