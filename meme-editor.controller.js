@@ -37,8 +37,8 @@ function renderMeme() {
 
   const curmeme = getMeme()
   const { lines, selectedImgId} = curmeme
-  // const elImg = document.querySelector(`${selectedImgId}`)
-  // gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+  console.log(selectedImgId)
+  gCtx.drawImage(selectedImgId, 0, 0, gElCanvas.width, gElCanvas.height)
 
   drawText(lines, gElCanvas.width / 2, gElCanvas.height / 6)
 }

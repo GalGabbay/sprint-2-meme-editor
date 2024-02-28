@@ -8,14 +8,13 @@ function onInitpics() {
 
 function renderGallery() {
     
-    var imgs = getImgs()
-        var strHtmls = gImgs.map(img => `
+    const imgs = getImgs()
+        const strHtmls = imgs.map(img => `
            
-                <img
-                    src="img/${img.id}.jpg" onclick="onSelectImg(${img.id})"
+                <img  src="${img.url}" onclick="onSelectImg(this)" class="${img.id}"
                     onerror="this.src='img/1.jpg'">
         
-         `)
+                     `)
         document.querySelector('.gallery-pics').innerHTML = strHtmls.join('')
     }
 
