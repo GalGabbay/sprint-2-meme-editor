@@ -2,6 +2,9 @@
 
 function onInitpics() {
     renderGallery()
+
+        const imgs = getImgs()
+
 }
 
 
