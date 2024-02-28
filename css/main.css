@@ -1,3 +1,26 @@
 canvas {
     background-color: lightblue;
 }
+
+
+
+
+/* flex helpers  */
+
+.flex {
+    display: flex;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+
+
+
+
+

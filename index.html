@@ -16,11 +16,16 @@
         <section class="gallery-container">
         </section>
 
-        <section class="meme-editor-containter">
+        <section class="meme-editor-containter flex space-between center">
 
             <canvas width="500" height="500"></canvas>
-            <div class="meme-controls"></div>
+            <div class="meme-controls">
+                <input class="user-text-input" type="text" oninput="onSetLineText(this.value)">
+            </div>
         </section>
+        <img src="img/1.jpg" onclick="onSelectImg(this) " />
+
+
 
     </main>
     <footer>footer</footer>

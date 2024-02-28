@@ -16,31 +16,50 @@ function onInit() {
     
 }
 
-function renderMeme( ){
+function renderMeme(){
     
      const curmeme =  getMeme()
-     
-     console.log(curmeme)
-    const img = new Image()
-    img.src = 'img/1.jpg'
+     const {lines} = curmeme
+     const elImg = document.querySelector('img')
+     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+  console.log('dddd', lines)
+    drawText(lines, gElCanvas.width / 2, gElCanvas.height / 6)
 
-    img.onload = () => {
-        gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
-    }
-
-    drawText('Write your meme', gElCanvas.width / 4, gElCanvas.height / 4)
 
 }
+
+
+// function drawText() {
+    
+
+//     gStars.forEach((star, idx) => {
+//         star.x = (idx + 1) * (BAR_WIDTH + BAR_SPACE)
+//         star.y = gElCanvas.height - star.rate
+//         gCtx.fillStyle = star.color
+
+//         gCtx.fillRect(star.x, star.y, BAR_WIDTH, star.rate)
+//     })
+
+// }
+
+function onSetLineText(userTxt) {
+  console.log(userTxt)
+  setLineText(userTxt)
+  renderMeme()
+}
+
 
 function resizeCanvas() {
     const elCanvasContainer = document.querySelector('.meme-editor-containter')
     gElCanvas.width = elCanvasContainer.clientWidth
   }
 
-
-function drawText(text, x, y) {
-	gCtx.lineWidth = 2
-	gCtx.strokeStyle = 'orange'
+  
+function drawText(lines, x, y) {
+  const txt = lines[0].txt
+  console.log('dddv', txt)
+	gCtx.lineWidth = 3
+	gCtx.strokeStyle = 'black'
 
 	gCtx.fillStyle = 'lightsteelblue'
 
@@ -48,8 +67,8 @@ function drawText(text, x, y) {
 	gCtx.textAlign = 'center'
 	gCtx.textBaseline = 'middle'
 
-	gCtx.fillText(text, x, y)
-	gCtx.strokeText(text, x, y)
+	gCtx.fillText(lines[0].txt, x, y)
+	gCtx.strokeText(lines[0].txt, x, y)
 }
 
 function addListeners() {
