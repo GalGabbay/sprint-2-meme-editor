@@ -8,22 +8,24 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body onload="onInit()">
+<body onload="onInitpics()">
     <header>
         <h1>Meme Generator</h1>
     </header>
     <main>
         <section class="gallery-container">
+            <section class="gallery-controls"></section>
+            <section class="gallery-pics"></section>
         </section>
 
-        <section class="meme-editor-containter flex space-between center">
+        <section class="meme-editor-containter flex space-between-center">
 
-            <canvas width="500" height="500"></canvas>
+            <canvas class="canvas hide" width="500" height="500"></canvas>
             <div class="meme-controls">
-                <input class="user-text-input" type="text" oninput="onSetLineText(this.value)">
+                <input class="user-text-input hide " type="text" oninput="onSetLineText(this.value)">
             </div>
         </section>
-        <img src="img/1.jpg" onclick="onSelectImg(this) " />
+        <!-- <img src="img/1.jpg" onclick="onSelectImg(this) " /> -->
 
 
 

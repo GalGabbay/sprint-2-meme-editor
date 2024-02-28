@@ -2,7 +2,6 @@
 
 
 
-var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] }]
 
 
 var gMeme = {
@@ -18,6 +17,14 @@ var gMeme = {
 }
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
+
+
+
+function loadMeme(imgId) {
+    console.log(imgId)
+gMeme.selectedImgId = imgId
+
+}
 
 function getMeme() {
 
