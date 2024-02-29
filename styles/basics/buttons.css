@@ -9,6 +9,12 @@
   font-size: 1em;
   color: var(--primary-2);
   letter-spacing: 0.11em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 3em;
+
+
+
 }
 
 .btn:hover {
@@ -16,9 +22,6 @@
   border-color: var(--secondary-base);
 }
 
-.btn.rounded {
-  border-radius: 3em;
-}
 
 
 .btn.arrow {
@@ -34,4 +37,9 @@
   content: "→";
   position: absolute;
   right: 0.875em;
+}
+
+.color-btn {
+
+  cursor: pointer;
 }

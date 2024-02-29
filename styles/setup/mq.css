@@ -36,6 +36,8 @@
   .main-nav .main-nav-list a:hover {
     background-color: #f2f2f2;
   }
+
+
 }
 
 /* SMALL */
@@ -46,10 +48,30 @@
       minmax(auto, 600px)
       minmax(20px, 1fr);
   }
+  
 }
 
 /* MEDIUM */
 @media (min-width: 920px) {
+
+  .meme-editor-containter{
+    display: flex;
+
+  }
+
+  canvas {
+    padding: 4em;
+    border-radius: 7em;
+    height: 600px;
+    width: 600px;
+    }
+
+    .meme-controls{
+
+      margin-top: 4em;
+   
+  
+  }
   .main-layout {
     grid-template-columns:
       minmax(20px, 1fr)
@@ -69,31 +91,7 @@
     margin-inline-end: 100px;
   }
 
-  .card-layout {
-    row-gap: 80px;
-  }
 
-  .card-layout > *:first-child > *:not(.card-image) {
-    margin-inline: 80px;
-  }
-
-  .card-layout {
-    grid-template-columns:
-      var(--card-layout-outer-margin) 1fr var(--card-layout-margin)
-      1fr var(--card-layout-outer-margin);
-  }
-
-  .card-layout > *:first-child {
-    grid-column: 1 / -1;
-  }
-
-  .card-layout > *:nth-child(even) {
-    grid-column: 2;
-  }
-
-  .card-layout > *:nth-child(odd):not(:first-child) {
-    grid-column: 4;
-  }
 }
 
 /* LARGE */
@@ -108,7 +106,5 @@
     --card-layout-margin: 60px;
     --card-layout-outer-margin: 80px;
   }
-  .card-layout {
-    row-gap: 130px;
-  }
+
 }

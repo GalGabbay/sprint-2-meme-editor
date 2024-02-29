@@ -35,3 +35,8 @@ function setFillColor(fillColor) {
     gMeme.lines[gMeme.selectedLineIdx].fillColor = fillColor
 }
 
+function downloadImg(elLink) {
+    const imgContent = gElCanvas.toDataURL('jpeg') 
+    elLink.href = imgContent
+  }
+

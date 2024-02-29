@@ -19,13 +19,15 @@
             <section class="gallery-pics"></section>
         </section>
 
-        <section class="meme-editor-containter flex">
+        <section class="meme-editor-containter ">
 
-            <canvas class="canvas hide" width="500" height="500"></canvas>
+            <canvas class="canvas hide" width="400" height="400"></canvas>
             <div class="meme-controls hide">
-                <input class="user-text-input hide" type="text" oninput="onSetLineText(this.value)" placeholder="Write Something...">
-                <input class="user-stroke-input hide" type="color" oninput="onSetStrokeColor(this.value)">
-                <input class="user-fill-input hide" type="color" oninput="onSetFillColor(this.value)">
+                <input class="user-text-input btn" type="text" oninput="onSetLineText(this.value)" placeholder="Write Something...">
+                <input class="user-stroke-input color-btn" type="color" oninput="onSetStrokeColor(this.value)">
+                <input class="user-fill-input color-btn" type="color" oninput="onSetFillColor(this.value)">
+                <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download</a>
+
             </div>
         </section>
 

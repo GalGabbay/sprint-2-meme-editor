@@ -81,6 +81,11 @@ function drawText(lines, x, y) {
   gCtx.strokeText(lines[0].txt, x, y)
 }
 
+function onDownloadImg(elLink) {
+  downloadImg(elLink)
+
+}
+
 
 
 function addListeners() {
