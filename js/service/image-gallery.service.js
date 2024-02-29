@@ -2,6 +2,7 @@
 
 var gImgs
 var count = 18
+var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 function getImgs() {
     gImgs = _createImgs(count) 

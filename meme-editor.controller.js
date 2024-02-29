@@ -2,16 +2,15 @@
 
 const TOUCH_EVENTS = ['touchstart', 'touchmove', 'touchend']
 
+let gStartPos
 let gElCanvas
 let gCtx
 
 function onSelectImg(imgId) {
-
+  
   loadCanvas()
   hidePicsGallery()
-  loadMeme(imgId)
-  // resizeCanvas()
-  // addListeners()
+  creategMeme(imgId)
   renderMeme()
 }
 
@@ -24,6 +23,9 @@ function loadCanvas() {
   
 
   gElCanvas = document.querySelector('canvas')
+ 
+  addListeners()
+  resizeCanvas()
   gCtx = gElCanvas.getContext('2d')
 
 }
@@ -33,14 +35,12 @@ function hidePicsGallery() {
 }
 
 function renderMeme() {
-  const curmeme = getMeme()
+  const curmeme = getMeme(gElCanvas)
   const {lines, selectedImgId} = curmeme
-  console.log(lines)
   
   gCtx.drawImage(selectedImgId, 0, 0, gElCanvas.width, gElCanvas.height)
 
-  drawText(lines, gElCanvas.width / 2, gElCanvas.height /6)
-  drawText(lines, gElCanvas.width / 2, gElCanvas.height /1.2)
+  drawText(lines)
   
 }
 
@@ -73,6 +73,10 @@ function onDownloadImg() {
   downloadImg()
 }
 
+function onSwitchLine(){
+  switchLine()
+}
+
 function onAddLine() {
   addLine()
 
@@ -81,17 +85,23 @@ function onAddLine() {
 
 
 
+
+
 function resizeCanvas() {
-  const elCanvasContainer = document.querySelector('.meme-editor-containter')
-  gElCanvas.width = elCanvasContainer.clientWidth
+  const gElCanvas = document.querySelector('canvas')
+  // gElCanvas.width = gElCanvas.clientWidth
+  setCanvas(gElCanvas)
 }
 
 
-function drawText(lines, x, y) {
-  
-  const strokeColor = lines[0].strokeColor
-  const fillColor = lines[0].fillColor
-  const fontSize = lines[0].fontSize
+function drawText(lines) {
+
+  lines.forEach((line, idx) => {
+
+
+  const strokeColor = line.strokeColor
+  const fillColor = line.fillColor
+  const fontSize = line.fontSize
 
   gCtx.lineWidth = 2
   gCtx.strokeStyle = strokeColor
@@ -102,9 +112,14 @@ function drawText(lines, x, y) {
   gCtx.textAlign = 'center'
   gCtx.textBaseline = 'middle'
 
-  gCtx.fillText(lines[0].txt, x, y)
-  gCtx.strokeText(lines[0].txt, x, y)
+  gCtx.fillText(line.txt, line.rows.x, line.rows.y)
+  gCtx.strokeText(line.txt, line.rows.x, line.rows.y)
 
+
+
+
+
+})
 }
 
 
@@ -119,13 +134,46 @@ function addListeners() {
 }
 
 function addMouseListeners() {
-  gElCanvas.addEventListener('mousedown', onStartDraw)
-  gElCanvas.addEventListener('mousemove', onDraw)
-  gElCanvas.addEventListener('mouseup', onEndDraw)
+	gElCanvas.addEventListener('mousedown', onDown)
+	gElCanvas.addEventListener('mousemove', onMove)
+	gElCanvas.addEventListener('mouseup', onUp)
 }
 
 function addTouchListeners() {
-  gElCanvas.addEventListener('touchstart', onStartDraw)
-  gElCanvas.addEventListener('touchmove', onDraw)
-  gElCanvas.addEventListener('touchend', onEndDraw)
+	gElCanvas.addEventListener('touchstart', onDown)
+	gElCanvas.addEventListener('touchmove', onMove)
+	gElCanvas.addEventListener('touchend', onUp)
 }
+
+function onDown(ev) {
+	
+	gStartPos = getEvPos(ev)      
+	if (!isLineClicked(gStartPos)) return
+
+	setCircleDrag(true)
+	//Save the pos we start from
+	document.body.style.cursor = 'grabbing'
+}
+
+function onMove(ev) {
+	// const { isDrag } = getCircle()
+	// if (!isDrag) return
+
+	// const pos = getEvPos(ev)
+	// // Calc the delta, the diff we moved
+	// const dx = pos.x - gStartPos.x
+	// const dy = pos.y - gStartPos.y
+	// moveCircle(dx, dy)
+
+	// Save the last pos, we remember where we`ve been and move accordingly
+	// gStartPos = pos
+	
+    // The canvas is rendered again after every move
+    renderMeme()
+}
+
+function onUp() {
+	// setCircleDrag(false)
+	// document.body.style.cursor = 'grab'
+}
+

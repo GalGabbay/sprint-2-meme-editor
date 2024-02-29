@@ -1,35 +1,33 @@
 'use strict'
+var gMeme = null
+var gElCanvasWidth
+var gElCanvasHeight
 
-
-
-var gMeme = {
-    selectedImgId: 0,
-    selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'Write something',
-            size: 20,
-            strokeColor: 'white',
-            fillColor: 'white',
-            fontSize: 45,
-            
-        }
-    ,
-    
-        {
-            txt: 'Write some',
-            size: 20,
-            strokeColor: 'white',
-            fillColor: 'white',
-            fontSize: 45,
-        }
-    ]
-    
-}
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
-
-function loadMeme(imgId) {
-gMeme.selectedImgId = imgId
+function creategMeme(imgId) {
+    gMeme = {
+        selectedImgId: imgId,
+        selectedLineIdx: 0,
+        selectedLine: true,
+        lines: [
+            {
+                txt: 'Write something',
+                size: 20,
+                strokeColor: 'white',
+                fillColor: 'white',
+                fontSize: 45,
+                rows: { x: gElCanvasWidth / 2, y: gElCanvasHeight / 6 },
+            }
+            ,
+            {
+                txt: 'Write something',
+                size: 20,
+                strokeColor: 'white',
+                fillColor: 'white',
+                fontSize: 45,
+                rows: { x: gElCanvasWidth / 2, y: gElCanvasHeight / 1.2 }
+            }
+        ]
+    }
 }
 
 function getMeme() {
@@ -37,34 +35,87 @@ function getMeme() {
 }
 
 function setLineText(userTxt) {
-    gMeme.lines[gMeme.selectedLineIdx].txt = userTxt
+    if (gMeme.selectedLine) {
+        gMeme.lines[0].txt = userTxt
+    }
+    else if (!gMeme.selectedLine) {
+        gMeme.lines[1].txt = userTxt
+    }
 }
 
 function setStrokeColor(strokeColor) {
-    gMeme.lines[0].strokeColor = strokeColor
+    if (gMeme.selectedLine) {
+        gMeme.lines[0].strokeColor = strokeColor
+    }
+    else if (!gMeme.selectedLine) {
+        gMeme.lines[1].strokeColor = strokeColor
+    }
 }
 
 function setFillColor(fillColor) {
-    gMeme.lines[0].fillColor = fillColor
+    if (gMeme.selectedLine) {
+        gMeme.lines[0].fillColor = fillColor
+    }
+    else if (!gMeme.selectedLine) {
+        gMeme.lines[1].fillColor = fillColor
+    }
 }
 
 function downloadImg(elLink) {
-    const imgContent = gElCanvas.toDataURL('jpeg') 
+    const imgContent = gElCanvas.toDataURL('jpeg')
     elLink.href = imgContent
-  }
+}
 
-  function increaseFont() {
-    gMeme.lines[0].fontSize++
-    
-  }
+function increaseFont() {
+    if (gMeme.selectedLine) {
+        gMeme.lines[0].fontSize++
+    }
+    else if (!gMeme.selectedLine) {
+        gMeme.lines[1].fontSize++
+    }
+}
 
-  function decreaseFont(){
-    gMeme.lines[0].fontSize--
+function decreaseFont() {
+    if (gMeme.selectedLine) {
+        gMeme.lines[0].fontSize--
+    }
+    else if (!gMeme.selectedLine) {
+        gMeme.lines[1].fontSize--
+    }
+}
 
-  }
+function switchLine() {
+    gMeme.selectedLine = !gMeme.selectedLine
+}
 
-  function addLine() {
-      
- 
-  }
+function addLine() {
+    gMeme.lines.push(
+        {
+            txt: 'Write something',
+            size: 20,
+            strokeColor: 'white',
+            fillColor: 'white',
+            fontSize: 45,
+            rows: { x: gElCanvasWidth / 2, y: gElCanvasHeight / 2 }
+        }
+    )
+}
 
+function setCanvas(gElCanvas) {
+    gElCanvasWidth = gElCanvas.width
+    gElCanvasHeight = gElCanvas.height
+}
+
+
+
+// function isLineClicked(clickedPos) {
+//     const { pos } = gLine
+//     const { offsetX, offsetY, clientX, clientY } = ev
+
+//     const lineArea = gMeme.findIndex(line => {
+//         const { x, y, rate } = line
+//         return offsetX >= x && offsetX <= x + BAR_WIDTH &&
+//             offsetY >= y && offsetY <= y + rate
+//     })
+
+// }

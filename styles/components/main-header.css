@@ -5,7 +5,10 @@
   font-family: Kodemono;
 }
 
-
+h1{
+  text-align: center;
+  margin-top: 0.7em;
+}
 
 .main-header .main-nav-list li {
   border-inline-start: 1px solid black;
