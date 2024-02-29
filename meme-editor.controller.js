@@ -56,6 +56,21 @@ function onSetFillColor(fillColor) {
   renderMeme()
 }
 
+function onIncreaseFont(){
+  increaseFont()
+  renderMeme()
+}
+
+function onDecreaseFont(){
+  decreaseFont()
+  renderMeme()
+}
+
+function onDownloadImg() {
+  downloadImg()
+}
+
+
 
 function resizeCanvas() {
   const elCanvasContainer = document.querySelector('.meme-editor-containter')
@@ -67,13 +82,14 @@ function drawText(lines, x, y) {
   const txt = lines[0].txt
   const strokeColor = lines[0].strokeColor
   const fillColor = lines[0].fillColor
-  console.log(fillColor)
+  const fontSize = lines[0].fontSize
+
   gCtx.lineWidth = 2
   gCtx.strokeStyle = strokeColor
 
   gCtx.fillStyle = fillColor
-
-  gCtx.font = '45px Arial'
+  
+  gCtx.font = `${fontSize}px Arial`
   gCtx.textAlign = 'center'
   gCtx.textBaseline = 'middle'
 
@@ -81,10 +97,8 @@ function drawText(lines, x, y) {
   gCtx.strokeText(lines[0].txt, x, y)
 }
 
-function onDownloadImg(elLink) {
-  downloadImg(elLink)
 
-}
+
 
 
 

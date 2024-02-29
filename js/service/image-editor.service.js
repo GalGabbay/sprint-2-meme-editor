@@ -10,6 +10,7 @@ var gMeme = {
             size: 20,
             strokeColor: 'white',
             fillColor: 'white',
+            fontSize: 45
         }
     ]
 }
@@ -24,19 +25,29 @@ function getMeme() {
 }
 
 function setLineText(userTxt) {
-    gMeme.lines[gMeme.selectedLineIdx].txt = userTxt
+    gMeme.lines[0].txt = userTxt
 }
 
 function setStrokeColor(strokeColor) {
-    gMeme.lines[gMeme.selectedLineIdx].strokeColor = strokeColor
+    gMeme.lines[0].strokeColor = strokeColor
 }
 
 function setFillColor(fillColor) {
-    gMeme.lines[gMeme.selectedLineIdx].fillColor = fillColor
+    gMeme.lines[0].fillColor = fillColor
 }
 
 function downloadImg(elLink) {
     const imgContent = gElCanvas.toDataURL('jpeg') 
     elLink.href = imgContent
+  }
+
+  function increaseFont() {
+    gMeme.lines[0].fontSize++
+    
+  }
+
+  function decreaseFont(){
+    gMeme.lines[0].fontSize--
+
   }
 

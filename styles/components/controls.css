@@ -1,17 +1,12 @@
-
-
-
-
-.meme-controls{
+.meme-controls {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(5, 1fr);
     gap: 3em;
     padding: 3em 3em;
     margin-top: 1em;
-    background-color :var( --primary-1);
+    background-color: var(--primary-1);
     height: 36em;
     border-radius: 2.5em;
-
 }
 
 .meme-editor-containter {
@@ -29,12 +24,18 @@
     padding: 2em;
 
 }
-img{
+
+img {
     border-radius: 2em;
     width: 30%;
-    
+
 }
 
 .user-text-input {
     grid-area: 1/1/2/4
+}
+
+canvas {
+    border-radius: 7em;
+    margin-inline: 5em;
 }

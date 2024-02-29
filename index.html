@@ -9,6 +9,9 @@
 </head>
 
 <body class="main-layout" onload="onInitpics()">
+
+    <div class="main-screen" onclick="toggleMenu()"></div>
+
     
     <header class="main-header">
         <h1>Meme Generator</h1>
@@ -26,6 +29,8 @@
                 <input class="user-text-input btn" type="text" oninput="onSetLineText(this.value)" placeholder="Write Something...">
                 <input class="user-stroke-input color-btn" type="color" oninput="onSetStrokeColor(this.value)">
                 <input class="user-fill-input color-btn" type="color" oninput="onSetFillColor(this.value)">
+                <button class="increase-font-btn btn" onclick="onIncreaseFont()" >+</button>
+               <button class="decrese-font-btn btn" onclick="onDecreaseFont()" >-</button>
                 <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download</a>
 
             </div>
