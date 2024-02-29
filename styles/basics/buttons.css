@@ -9,13 +9,15 @@
   font-size: 1em;
   color: var(--primary-2);
   letter-spacing: 0.11em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 3em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3em;
 
 
 
 }
+
+
 
 .btn:hover {
   color: var(--secondary-base);

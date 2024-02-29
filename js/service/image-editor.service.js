@@ -1,6 +1,7 @@
 'use strict'
 
 
+
 var gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
@@ -10,9 +11,20 @@ var gMeme = {
             size: 20,
             strokeColor: 'white',
             fillColor: 'white',
-            fontSize: 45
+            fontSize: 45,
+            
+        }
+    ,
+    
+        {
+            txt: 'Write some',
+            size: 20,
+            strokeColor: 'white',
+            fillColor: 'white',
+            fontSize: 45,
         }
     ]
+    
 }
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
@@ -25,7 +37,7 @@ function getMeme() {
 }
 
 function setLineText(userTxt) {
-    gMeme.lines[0].txt = userTxt
+    gMeme.lines[gMeme.selectedLineIdx].txt = userTxt
 }
 
 function setStrokeColor(strokeColor) {
@@ -49,5 +61,10 @@ function downloadImg(elLink) {
   function decreaseFont(){
     gMeme.lines[0].fontSize--
 
+  }
+
+  function addLine() {
+      
+ 
   }
 

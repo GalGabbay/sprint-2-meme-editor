@@ -39,3 +39,7 @@ canvas {
     border-radius: 7em;
     margin-inline: 5em;
 }
+
+.download-btn {
+    place-self: center;
+}

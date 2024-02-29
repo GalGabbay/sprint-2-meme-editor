@@ -34,14 +34,17 @@ function hidePicsGallery() {
 
 function renderMeme() {
   const curmeme = getMeme()
-  const {lines, selectedImgId } = curmeme
+  const {lines, selectedImgId} = curmeme
+  console.log(lines)
+  
   gCtx.drawImage(selectedImgId, 0, 0, gElCanvas.width, gElCanvas.height)
 
-  drawText(lines, gElCanvas.width / 2, gElCanvas.height / 6)
+  drawText(lines, gElCanvas.width / 2, gElCanvas.height /6)
+  drawText(lines, gElCanvas.width / 2, gElCanvas.height /1.2)
+  
 }
 
 function onSetLineText(userTxt) {
-  console.log(userTxt)
   setLineText(userTxt)
   renderMeme()
 }
@@ -70,6 +73,12 @@ function onDownloadImg() {
   downloadImg()
 }
 
+function onAddLine() {
+  addLine()
+
+  renderMeme()
+}
+
 
 
 function resizeCanvas() {
@@ -79,7 +88,7 @@ function resizeCanvas() {
 
 
 function drawText(lines, x, y) {
-  const txt = lines[0].txt
+  
   const strokeColor = lines[0].strokeColor
   const fillColor = lines[0].fillColor
   const fontSize = lines[0].fontSize
@@ -95,6 +104,7 @@ function drawText(lines, x, y) {
 
   gCtx.fillText(lines[0].txt, x, y)
   gCtx.strokeText(lines[0].txt, x, y)
+
 }
 
 
