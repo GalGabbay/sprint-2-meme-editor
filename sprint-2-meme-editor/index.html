@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lib/animate.min.css">
+    <script src="https://kit.fontawesome.com/49cdaa1449.js" crossorigin="anonymous"></script>
+
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="styles/styles.css">
+
+</head>
+
+<body class="main-layout" onload="onInitpics()">
+
+    <div class="main-screen" onclick="toggleMenu()"></div>
+
+
+    <header class="main-header flex space-between align-center">
+        <h1>Meme Generator</h1>
+        <nav class="main-nav">
+            <ul class="main-nav-list flex clean-list">
+                <li><a class="back-to-gallery" onclick="onBackToGallery()" href="">Gallery </a></li>
+                <li><a href="#">About</a></li>
+
+
+            </ul>
+        </nav>
+        
+    </header>
+    <main>
+        <section class="gallery-container">
+            <section class="gallery-controls"></section>
+            <section class="gallery-pics"></section>
+        </section>
+
+        <section class="meme-editor-containter ">
+
+            <canvas class="canvas hide" width="400" height="400"></canvas>
+            <div class="meme-controls hide">
+                <input class="user-text-input" type="text" oninput="onSetLineText(this.value)"
+                    placeholder="Write Something...">
+                <button class="btn color-btn"><input title="Stroke Color" class="user-stroke-input" type="color"
+                        oninput="onSetStrokeColor(this.value)">
+                    <i class="fa-solid fa-paint-roller"></i></button>
+                <button class="btn color-btn"><input title="Fill Color" class="user-fill-input" type="color"
+                        oninput="onSetFillColor(this.value)"><i class="fa-solid fa-paintbrush"></i></button>
+                <button title="Increase Font" class="increase-font-btn btn" onclick="onIncreaseFont()">+</button>
+                <button title="Decrese Font" class="decrese-font-btn btn" onclick="onDecreaseFont()">-</button>
+                <button class="add-txt-line btn" onclick="onAddLine()">Add Line</button>
+                <button class="switch-txt-line btn" onclick="onSwitchLine()">Switch Line</button>
+                <button class="delete-line btn" onclick="onDeleteLine()">Delete Line</button>
+
+                <a href="#" class="download-btn btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download</a>
+
+
+            </div>
+        </section>
+
+
+
+    </main>
+    <footer class="main-footer"></footer>
+    <script src="js/service/utils.js"></script>
+    <script src="js/service/image-editor.service.js"></script>
+    <script src="js/service/image-gallery.service.js"></script>
+    <script src="image-gallery.controller.js"></script>
+    <script src="meme-editor.controller.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+.meme-controls {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1.5em;
+    padding: 1em 2em;
+    margin-top: 1em;
+    background-color: var(--primary-1);
+    height: 22em;
+    border-radius: 2.5em;
+    width: 500px;
+}
+
+.meme-editor-containter {
+    padding: 2em;
+}
+
+.gallery-pics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em 1em;
+    align-items: center;
+    padding: 2em;
+    min-width: 500px;
+}
+
+img {
+    border-radius: 2em;
+    width: 30%;
+}
+
+.user-text-input {
+    grid-area: 1/1/2/4
+}
+
+canvas {
+    border-radius: 7em;
+    margin-inline: 5em;
+}
+
+.download-btn {
+    place-self: center;
+}
