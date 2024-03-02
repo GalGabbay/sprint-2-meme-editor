@@ -2,7 +2,6 @@
 
 function onInitpics() {
     renderGallery()
-
 }
 
 function renderGallery() {
@@ -15,6 +14,6 @@ function renderGallery() {
     document.querySelector('.gallery-pics').innerHTML = strHtmls.join('')
 }
 
-
-
-
+function onBackToGallery() {
+    window.location.reload()
+}

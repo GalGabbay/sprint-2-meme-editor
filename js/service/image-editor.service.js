@@ -35,30 +35,17 @@ function getMeme() {
 }
 
 function setLineText(userTxt) {
-    if (gMeme.selectedLine) {
-        gMeme.lines[0].txt = userTxt
-    }
-    else if (!gMeme.selectedLine) {
-        gMeme.lines[1].txt = userTxt
-    }
+    gMeme.lines[gMeme.selectedLineIdx].txt = userTxt
 }
 
 function setStrokeColor(strokeColor) {
-    if (gMeme.selectedLine) {
-        gMeme.lines[0].strokeColor = strokeColor
-    }
-    else if (!gMeme.selectedLine) {
-        gMeme.lines[1].strokeColor = strokeColor
-    }
+    gMeme.lines[gMeme.selectedLineIdx].strokeColor = strokeColor
+
 }
 
 function setFillColor(fillColor) {
-    if (gMeme.selectedLine) {
-        gMeme.lines[0].fillColor = fillColor
-    }
-    else if (!gMeme.selectedLine) {
-        gMeme.lines[1].fillColor = fillColor
-    }
+    gMeme.lines[gMeme.selectedLineIdx].fillColor = fillColor
+
 }
 
 function downloadImg(elLink) {
@@ -67,25 +54,18 @@ function downloadImg(elLink) {
 }
 
 function increaseFont() {
-    if (gMeme.selectedLine) {
-        gMeme.lines[0].fontSize++
-    }
-    else if (!gMeme.selectedLine) {
-        gMeme.lines[1].fontSize++
-    }
+    gMeme.lines[gMeme.selectedLineIdx].fontSize++
+
 }
 
 function decreaseFont() {
-    if (gMeme.selectedLine) {
-        gMeme.lines[0].fontSize--
-    }
-    else if (!gMeme.selectedLine) {
-        gMeme.lines[1].fontSize--
-    }
+    gMeme.lines[gMeme.selectedLineIdx].fontSize--
 }
 
 function switchLine() {
-    gMeme.selectedLine = !gMeme.selectedLine
+    gMeme.selectedLine = true
+    if (gMeme.selectedLineIdx === gMeme.lines.length - 1) { gMeme.selectedLineIdx = 0 }
+    else { gMeme.selectedLineIdx = gMeme.selectedLineIdx + 1 }
 }
 
 function addLine() {
@@ -99,6 +79,13 @@ function addLine() {
             rows: { x: gElCanvasWidth / 2, y: gElCanvasHeight / 2 }
         }
     )
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+}
+
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    gMeme.selectedLineIdx = 0
+  
 }
 
 function setCanvas(gElCanvas) {
@@ -106,16 +93,12 @@ function setCanvas(gElCanvas) {
     gElCanvasHeight = gElCanvas.height
 }
 
+function getFrameSizes(idx) {
+    var x1 = (gMeme.lines[idx].rows.x) / 8
+    var y1 = gMeme.lines[idx].rows.y - gMeme.lines[idx].size * 1.6
+    var x2 = (gMeme.lines[idx].rows.x) * 1.75
+    var y2 = (gMeme.lines[idx].size) * 3.5
+    gMeme.lines[idx].frameSizes = { x1, y1, x2, y2 }
+    return { x1, y1, x2, y2 }
+}
 
-
-// function isLineClicked(clickedPos) {
-//     const { pos } = gLine
-//     const { offsetX, offsetY, clientX, clientY } = ev
-
-//     const lineArea = gMeme.findIndex(line => {
-//         const { x, y, rate } = line
-//         return offsetX >= x && offsetX <= x + BAR_WIDTH &&
-//             offsetY >= y && offsetY <= y + rate
-//     })
-
-// }

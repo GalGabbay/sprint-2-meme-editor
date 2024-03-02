@@ -1,5 +1,5 @@
 .main-header {
-  background-color: var(--primary-base);
+  background-color: var(--primary-1);
   color: var(--primary-4);
   box-shadow: inset 0px -6px 0px 0px #0a0a0a;
   font-family: Kodemono;
@@ -8,6 +8,7 @@
 h1{
   text-align: center;
   margin-top: 0.7em;
+  margin-left: 3em;
 }
 
 .main-header .main-nav-list li {
@@ -22,16 +23,15 @@ h1{
   display: flex;
   text-decoration: none;
   color: inherit;
-  width: 135px;
-  height: 135px;
+  width: 80px;
+  height: 80px;
   align-items: center;
   justify-content: center;
-
   transition: box-shadow 0.6s;
 }
 
 .main-header .main-nav-list a:hover {
-  box-shadow: inset 0px -6px 0px 0px var(--secondary-base);
+  box-shadow: inset 0px -6px 0px 0px var(--primary-3)
 }
 
 .main-header .main-nav-list a.active {

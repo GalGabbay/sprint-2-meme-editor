@@ -1,4 +1,3 @@
-/* button  */
 
 .btn {
   padding: 0.6em 1.5em;
@@ -12,36 +11,68 @@
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 3em;
-
-
-
+  cursor: pointer;
 }
-
-
 
 .btn:hover {
   color: var(--secondary-base);
   border-color: var(--secondary-base);
+
 }
 
+.btn:active {
+  transform: scale(1.2, 0.9);
+  transition: 0.5s;
 
 
-.btn.arrow {
-  position: relative;
-  transition: padding 0.4s;
-}
-
-.btn.arrow:hover {
-  padding-inline-end: 2.6em;
-}
-
-.btn.arrow:hover::after {
-  content: "→";
-  position: absolute;
-  right: 0.875em;
 }
 
 .color-btn {
-
-  cursor: pointer;
+  position: relative;
+  z-index: 1
 }
+
+.color-btn input {
+  position: absolute;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.fa-paint-roller {
+  position: absolute;
+  transform: scale(2);
+  translate: -0.5em -0.4rem;
+  z-index: -1;
+}
+
+.fa-paintbrush {
+  position: absolute;
+  transform: scale(2);
+  translate: -0.7em -0.4rem;
+  z-index: -1;
+
+}
+
+.user-text-input {
+  padding: 0.6em 1.5em;
+  border: 3px solid var(--primary-2);
+  background-color: var(--primary-4);
+
+  font-family: lato-bold, sans-serif;
+  font-size: 1em;
+  color: var(--primary-2);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3em;
+}
+
+.user-text-input:hover {
+  color: var(--secondary-base);
+  border-color: var(--secondary-base);
+
+}
+

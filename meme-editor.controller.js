@@ -7,7 +7,6 @@ let gElCanvas
 let gCtx
 
 function onSelectImg(imgId) {
-  
   loadCanvas()
   hidePicsGallery()
   creategMeme(imgId)
@@ -20,14 +19,10 @@ function loadCanvas() {
   document.querySelector('.user-stroke-input').classList.remove('hide')
   document.querySelector('.user-fill-input').classList.remove('hide')
   document.querySelector('.meme-controls').classList.add('grid')
-  
-
   gElCanvas = document.querySelector('canvas')
- 
   addListeners()
   resizeCanvas()
   gCtx = gElCanvas.getContext('2d')
-
 }
 
 function hidePicsGallery() {
@@ -35,13 +30,10 @@ function hidePicsGallery() {
 }
 
 function renderMeme() {
-  const curmeme = getMeme(gElCanvas)
-  const {lines, selectedImgId} = curmeme
-  
+  const curmeme = getMeme()
+  const { lines, selectedImgId } = curmeme
   gCtx.drawImage(selectedImgId, 0, 0, gElCanvas.width, gElCanvas.height)
-
-  drawText(lines)
-  
+  drawText(lines, curmeme)
 }
 
 function onSetLineText(userTxt) {
@@ -59,12 +51,12 @@ function onSetFillColor(fillColor) {
   renderMeme()
 }
 
-function onIncreaseFont(){
+function onIncreaseFont() {
   increaseFont()
   renderMeme()
 }
 
-function onDecreaseFont(){
+function onDecreaseFont() {
   decreaseFont()
   renderMeme()
 }
@@ -73,19 +65,20 @@ function onDownloadImg() {
   downloadImg()
 }
 
-function onSwitchLine(){
+function onSwitchLine() {
   switchLine()
+  renderMeme()
 }
 
 function onAddLine() {
   addLine()
-
   renderMeme()
 }
 
-
-
-
+function onDeleteLine(){
+  deleteLine()
+  renderMeme()
+}
 
 function resizeCanvas() {
   const gElCanvas = document.querySelector('canvas')
@@ -93,87 +86,101 @@ function resizeCanvas() {
   setCanvas(gElCanvas)
 }
 
-
-function drawText(lines) {
-
+function drawText(lines, curmeme) {
   lines.forEach((line, idx) => {
 
+    const strokeColor = line.strokeColor
+    const fillColor = line.fillColor
+    const fontSize = line.fontSize
 
-  const strokeColor = line.strokeColor
-  const fillColor = line.fillColor
-  const fontSize = line.fontSize
+    gCtx.lineWidth = 2
+    gCtx.strokeStyle = strokeColor
+    gCtx.fillStyle = fillColor
+    gCtx.font = `${fontSize}px Arial`
+    gCtx.textAlign = 'center'
+    gCtx.textBaseline = 'middle'
 
-  gCtx.lineWidth = 2
-  gCtx.strokeStyle = strokeColor
-
-  gCtx.fillStyle = fillColor
+    gCtx.fillText(line.txt, line.rows.x, line.rows.y)
+    gCtx.strokeText(line.txt, line.rows.x, line.rows.y)
+    var frameSizes = getFrameSizes(idx)
   
-  gCtx.font = `${fontSize}px Arial`
-  gCtx.textAlign = 'center'
-  gCtx.textBaseline = 'middle'
-
-  gCtx.fillText(line.txt, line.rows.x, line.rows.y)
-  gCtx.strokeText(line.txt, line.rows.x, line.rows.y)
-
-
-
-
-
-})
+    if(idx === curmeme.selectedLineIdx) {
+    drawFrame(frameSizes)}
+  })
 }
 
+function drawFrame(frameSizes) {
+  const { x1, y1, x2, y2 } = frameSizes
+  gCtx.beginPath()
+  gCtx.strokeStyle = 'lightblue'
+  gCtx.lineWidth = 4
+  gCtx.strokeRect(x1, y1, x2, y2)
 
-
-
-
+}
 
 function addListeners() {
   addMouseListeners()
   addTouchListeners()
-  window.addEventListener('resize', resizeCanvas)
+  // window.addEventListener('resize', resizeCanvas)
 }
 
 function addMouseListeners() {
-	gElCanvas.addEventListener('mousedown', onDown)
-	gElCanvas.addEventListener('mousemove', onMove)
-	gElCanvas.addEventListener('mouseup', onUp)
+  gElCanvas.addEventListener('mousedown', onDown)
+  gElCanvas.addEventListener('mousemove', onMove)
+  gElCanvas.addEventListener('mouseup', onUp)
 }
 
 function addTouchListeners() {
-	gElCanvas.addEventListener('touchstart', onDown)
-	gElCanvas.addEventListener('touchmove', onMove)
-	gElCanvas.addEventListener('touchend', onUp)
+  gElCanvas.addEventListener('touchstart', onDown)
+  gElCanvas.addEventListener('touchmove', onMove)
+  gElCanvas.addEventListener('touchend', onUp)
 }
 
 function onDown(ev) {
-	
-	gStartPos = getEvPos(ev)      
-	if (!isLineClicked(gStartPos)) return
-
-	setCircleDrag(true)
-	//Save the pos we start from
-	document.body.style.cursor = 'grabbing'
+  gStartPos = getEvPos(ev)
+  // console.log(isLineClicked(gStartPos))
 }
 
 function onMove(ev) {
-	// const { isDrag } = getCircle()
-	// if (!isDrag) return
+  // const { isDrag } = getCircle()
+  // if (!isDrag) return
 
-	// const pos = getEvPos(ev)
-	// // Calc the delta, the diff we moved
-	// const dx = pos.x - gStartPos.x
-	// const dy = pos.y - gStartPos.y
-	// moveCircle(dx, dy)
+  // const pos = getEvPos(ev)
+  // // Calc the delta, the diff we moved
+  // const dx = pos.x - gStartPos.x
+  // const dy = pos.y - gStartPos.y
+  // moveCircle(dx, dy)
 
-	// Save the last pos, we remember where we`ve been and move accordingly
-	// gStartPos = pos
-	
-    // The canvas is rendered again after every move
-    renderMeme()
+  // Save the last pos, we remember where we`ve been and move accordingly
+  // gStartPos = pos
+
+  // The canvas is rendered again after every move
+  // renderMeme()
 }
 
 function onUp() {
-	// setCircleDrag(false)
-	// document.body.style.cursor = 'grab'
+  // setCircleDrag(false)
+  // document.body.style.cursor = 'grab'
+}
+
+
+function getEvPos(ev) {
+	let pos = {
+		x: ev.offsetX,
+		y: ev.offsetY,
+	}
+
+	// if (TOUCH_EVENTS.includes(ev.type)) {
+		
+	// 	ev.preventDefault()         // Prevent triggering the mouse events
+	// 	ev = ev.changedTouches[0]   // Gets the first touch point
+
+	// 	// Calc pos according to the touch screen
+	// 	pos = {
+	// 		x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+	// 		y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+	// 	}
+	// }
+	return pos
 }
 
