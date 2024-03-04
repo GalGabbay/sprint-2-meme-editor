@@ -39,7 +39,7 @@
   }
 
   .meme-controls {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 7em);
     grid-template-rows: repeat(3, 1fr);
     gap: 2em;
     padding: 2em 2em;
@@ -64,5 +64,10 @@
   h1{
     margin-left: 13em;
   }
+
+  .meme-controls {
+    grid-template-columns: repeat(3, 1fr);
+ 
+}
   
 }

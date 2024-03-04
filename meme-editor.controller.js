@@ -65,8 +65,8 @@ function onDownloadImg() {
   downloadImg()
 }
 
-function onSwitchLine() {
-  switchLine()
+function onSwitchLine(selectedLine) {
+  switchLine(selectedLine)
   renderMeme()
 }
 
@@ -75,14 +75,26 @@ function onAddLine() {
   renderMeme()
 }
 
-function onDeleteLine(){
+function onDeleteLine() {
   deleteLine()
+  renderMeme()
+}
+
+function onMoveUp(dir) {
+  console.log(dir)
+  moveLine(+dir)
+  renderMeme()
+}
+onMoveDown
+
+function onMoveDown(dir) {
+  console.log(dir)
+  moveLine(dir)
   renderMeme()
 }
 
 function resizeCanvas() {
   const gElCanvas = document.querySelector('canvas')
-  // gElCanvas.width = gElCanvas.clientWidth
   setCanvas(gElCanvas)
 }
 
@@ -103,9 +115,10 @@ function drawText(lines, curmeme) {
     gCtx.fillText(line.txt, line.rows.x, line.rows.y)
     gCtx.strokeText(line.txt, line.rows.x, line.rows.y)
     var frameSizes = getFrameSizes(idx)
-  
-    if(idx === curmeme.selectedLineIdx) {
-    drawFrame(frameSizes)}
+
+    if (idx === curmeme.selectedLineIdx) {
+      drawFrame(frameSizes)
+    }
   })
 }
 
@@ -121,7 +134,6 @@ function drawFrame(frameSizes) {
 function addListeners() {
   addMouseListeners()
   addTouchListeners()
-  // window.addEventListener('resize', resizeCanvas)
 }
 
 function addMouseListeners() {
@@ -137,50 +149,22 @@ function addTouchListeners() {
 }
 
 function onDown(ev) {
-  gStartPos = getEvPos(ev)
-  // console.log(isLineClicked(gStartPos))
+  const pos = getEvPos(ev)
+  const { lines } = getMeme()
+  const selectedLine = gMeme.lines.findIndex(line => {
+    const { x1, y1, x2, y2 } = line.frameSizes
+    const LineClicked =
+      (pos.x >= x1 && pos.x <= x1 + x2 && pos.y >= y1 && pos.y <= y1 + y2)
+    return LineClicked
+  })
+  if (selectedLine >= 0) {
+    onSwitchLine(selectedLine)
+  }
+  gStartPos = pos
 }
 
 function onMove(ev) {
-  // const { isDrag } = getCircle()
-  // if (!isDrag) return
-
-  // const pos = getEvPos(ev)
-  // // Calc the delta, the diff we moved
-  // const dx = pos.x - gStartPos.x
-  // const dy = pos.y - gStartPos.y
-  // moveCircle(dx, dy)
-
-  // Save the last pos, we remember where we`ve been and move accordingly
-  // gStartPos = pos
-
-  // The canvas is rendered again after every move
-  // renderMeme()
 }
 
 function onUp() {
-  // setCircleDrag(false)
-  // document.body.style.cursor = 'grab'
 }
-
-
-function getEvPos(ev) {
-	let pos = {
-		x: ev.offsetX,
-		y: ev.offsetY,
-	}
-
-	// if (TOUCH_EVENTS.includes(ev.type)) {
-		
-	// 	ev.preventDefault()         // Prevent triggering the mouse events
-	// 	ev = ev.changedTouches[0]   // Gets the first touch point
-
-	// 	// Calc pos according to the touch screen
-	// 	pos = {
-	// 		x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-	// 		y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
-	// 	}
-	// }
-	return pos
-}
-

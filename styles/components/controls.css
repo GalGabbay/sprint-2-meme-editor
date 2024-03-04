@@ -1,11 +1,10 @@
 .meme-controls {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(5, fr);
     gap: 1.5em;
     padding: 1em 2em;
     margin-top: 1em;
     background-color: var(--primary-1);
-    height: 22em;
+    height: 23em;
     border-radius: 2.5em;
     width: 500px;
 }
@@ -37,6 +36,6 @@ canvas {
     margin-inline: 5em;
 }
 
-.download-btn {
-    place-self: center;
+.download-btn i{
+    width: 100%;
 }

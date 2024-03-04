@@ -36,6 +36,7 @@ function getMeme() {
 
 function setLineText(userTxt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = userTxt
+    gMeme.lines[gMeme.selectedLineIdx].firstTyping = true
 }
 
 function setStrokeColor(strokeColor) {
@@ -62,10 +63,18 @@ function decreaseFont() {
     gMeme.lines[gMeme.selectedLineIdx].fontSize--
 }
 
-function switchLine() {
-    gMeme.selectedLine = true
-    if (gMeme.selectedLineIdx === gMeme.lines.length - 1) { gMeme.selectedLineIdx = 0 }
-    else { gMeme.selectedLineIdx = gMeme.selectedLineIdx + 1 }
+function switchLine(selectedLine) {
+    if (selectedLine >= 0) gMeme.selectedLineIdx = selectedLine
+    else {
+        if (gMeme.selectedLineIdx === gMeme.lines.length - 1) { gMeme.selectedLineIdx = 0 }
+        else { gMeme.selectedLineIdx = gMeme.selectedLineIdx + 1 }
+    }
+}
+
+function moveLine(dir) {
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+    line.rows.y -= dir
+
 }
 
 function addLine() {
@@ -85,7 +94,7 @@ function addLine() {
 function deleteLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
     gMeme.selectedLineIdx = 0
-  
+
 }
 
 function setCanvas(gElCanvas) {
@@ -94,11 +103,16 @@ function setCanvas(gElCanvas) {
 }
 
 function getFrameSizes(idx) {
-    var x1 = (gMeme.lines[idx].rows.x) / 8
+
+    let letterWidth = gCtx.measureText(gMeme.lines[idx].txt).width
+    var x1 = gMeme.lines[idx].rows.x - (letterWidth / 1.9)
     var y1 = gMeme.lines[idx].rows.y - gMeme.lines[idx].size * 1.6
-    var x2 = (gMeme.lines[idx].rows.x) * 1.75
+    var x2 = letterWidth + gMeme.lines[idx].size / 2.2
     var y2 = (gMeme.lines[idx].size) * 3.5
     gMeme.lines[idx].frameSizes = { x1, y1, x2, y2 }
+    gMeme.lines[idx].letterWidth = letterWidth
+
     return { x1, y1, x2, y2 }
 }
+
 

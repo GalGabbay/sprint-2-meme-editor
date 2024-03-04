@@ -6,16 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="lib/animate.min.css">
     <script src="https://kit.fontawesome.com/49cdaa1449.js" crossorigin="anonymous"></script>
-
     <title>Meme Generator</title>
     <link rel="stylesheet" href="styles/styles.css">
-
 </head>
 
 <body class="main-layout" onload="onInitpics()">
 
     <div class="main-screen" onclick="toggleMenu()"></div>
-
 
     <header class="main-header flex space-between align-center">
         <h1>Meme Generator</h1>
@@ -23,11 +20,8 @@
             <ul class="main-nav-list flex clean-list">
                 <li><a class="back-to-gallery" onclick="onBackToGallery()" href="">Gallery </a></li>
                 <li><a href="#">About</a></li>
-
-
             </ul>
-        </nav>
-        
+        </nav> 
     </header>
     <main>
         <section class="gallery-container">
@@ -36,7 +30,6 @@
         </section>
 
         <section class="meme-editor-containter ">
-
             <canvas class="canvas hide" width="400" height="400"></canvas>
             <div class="meme-controls hide">
                 <input class="user-text-input" type="text" oninput="onSetLineText(this.value)"
@@ -46,21 +39,19 @@
                     <i class="fa-solid fa-paint-roller"></i></button>
                 <button class="btn color-btn"><input title="Fill Color" class="user-fill-input" type="color"
                         oninput="onSetFillColor(this.value)"><i class="fa-solid fa-paintbrush"></i></button>
-                <button title="Increase Font" class="increase-font-btn btn" onclick="onIncreaseFont()">+</button>
-                <button title="Decrese Font" class="decrese-font-btn btn" onclick="onDecreaseFont()">-</button>
-                <button class="add-txt-line btn" onclick="onAddLine()">Add Line</button>
-                <button class="switch-txt-line btn" onclick="onSwitchLine()">Switch Line</button>
-                <button class="delete-line btn" onclick="onDeleteLine()">Delete Line</button>
-
-                <a href="#" class="download-btn btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download</a>
-
-
+                <button title="Increase Font" class="increase-font-btn btn" onclick="onIncreaseFont()">
+                    +<i class="fa-solid fa-text-height"></i></button>
+                <button title="Decrese Font" class="decrese-font-btn btn" onclick="onDecreaseFont()">-<i class="fa-solid fa-text-height"></i></button>
+                <button title="Add Line" class="add-txt-line btn" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
+                <button title="Move Up Line" class="move-up btn" onclick="onMoveUp(1)"><i class="fa-solid fa-up-long"></i></button>
+                <button title="Move Down Line" class="move-down btn" onclick="onMoveDown(-1)"><i class="fa-solid fa-down-long"></i></button>
+                <button title="Switch Line" class="switch-txt-line btn" onclick="onSwitchLine()"><i class="fa-solid fa-repeat"></i></button>
+                <button title="delete Line" class="delete-line btn" onclick="onDeleteLine()"><i class="fa-solid fa-trash"></i></button>
+                <a title="Download Meme"href="#" class="download-btn btn" onclick="onDownloadImg(this)" download="my-img.jpg"><i class="fa-solid fa-download"></i></a>
             </div>
         </section>
-
-
-
     </main>
+
     <footer class="main-footer"></footer>
     <script src="js/service/utils.js"></script>
     <script src="js/service/image-editor.service.js"></script>
